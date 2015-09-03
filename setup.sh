@@ -36,9 +36,11 @@ install Redis redis-server
 install 'Nokogiri dependencies' libxml2 libxml2-dev libxslt1-dev
 install 'ExecJS runtime' nodejs
 install Nginx nginx
-install ImageMagick imagemagick
+install ImageMagick imagemagick libmagickwand-dev
 install Monit monit
 install 'OpenJDK Runtime Env 7' openjdk-7-jre-headless
+install alien
+install libaio1
 
 # update language to UTF-8
 sudo update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
