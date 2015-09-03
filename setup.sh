@@ -1,17 +1,22 @@
+#!/bin/bash
+
+set -e
+
 # The output of all these installation steps is noisy. With this utility
 # the progress report is nice and concise.
 function install {
     echo installing $1
     shift
-    apt-get -y install "$@" >/dev/null 2>&1
+    sudo apt-get -y install "$@" >/dev/null 2>&1
 }
 
 echo Updating Package Index
-apt-get -y update >/dev/null 2>&1
+sudo apt-get -y update >/dev/null 2>&1
 
 install 'development tools' build-essential
+install openssh-server
 
-echo 'Ruby Version Manager (RVM)'
+echo 'Ruby Version Manager - RVM'
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 curl -sSL https://get.rvm.io | bash -s stable
 source ~/.rvm/scripts/rvm
@@ -36,6 +41,6 @@ install Monit monit
 install 'OpenJDK Runtime Env 7' openjdk-7-jre-headless
 
 # update language to UTF-8
-update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
+sudo update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
 
 echo 'Done'
